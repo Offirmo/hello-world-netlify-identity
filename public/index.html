@@ -31,7 +31,11 @@
 <ul>
 	<li>Src: <a>https://github.com/Offirmo/hello-world-netlify-identity</a>
 	<li>Using: <a>https://github.com/netlify/netlify-lambda</a>
-	<button onclick="netlifyIdentity.open()">auth</button>
+	<li>Direct function invocation:
+		<ul>
+			<li><button onclick="netlifyIdentity.open()">auth</button>
+			<li><a>/.netlify/functions/echo?foo=bar&baz=42</a>
+		</ul>
 </ul>
 
 <script>
