@@ -34,7 +34,10 @@
 	<li>Direct function invocation:
 		<ul>
 			<li><button onclick="netlifyIdentity.open()">auth</button>
+			<li><a>/.netlify/functions/me</a>
 			<li><a>/.netlify/functions/echo?foo=bar&baz=42</a>
+			<li><button onclick="whoami('.netlify/functions/echo?foo=bar&baz=42')">echo auth</button>
+			<li><button onclick="whoami()">whoami</button>
 		</ul>
 </ul>
 
@@ -64,4 +67,44 @@
 	// Log out the user
 	//netlifyIdentity.logout();
 
+	window.whoami = (url = '.netlify/functions/me') => {
+		const user = netlifyIdentity.currentUser()
+		if (!user)
+			throw new Error('Not logged in!')
+
+		let ok = false // so far
+		let errorMessage = 'Failed fetch'; // so far
+		const headers = {
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${user.token.access_token}`
+			}
+		console.log('fetching', {url, headers})
+
+		fetch(url, { headers })
+			.then(response => {
+				// WARN: we can't destructure response because .json() needs a binding to response
+				ok = response.ok;
+				if (!ok)
+					errorMessage += `, status="${response.status}"`;
+				return response.json();
+			})
+			.then(responseData => {
+				console.log({url, responseData})
+
+				if (responseData && responseData.errors) {
+					ok = false; // just in case
+					const messages = responseData.errors.map(errorData => `"${errorData.message}"`).join(', ');
+					errorMessage += `, error(s)="[${messages}]"`;
+				}
+
+			})
+			.finally(() => {
+				if (!ok)
+					throw new Error(errorMessage);
+			})
+			.catch(e => {
+				console.error(url, e);
+				throw e;
+			})
+	}
 </script>
