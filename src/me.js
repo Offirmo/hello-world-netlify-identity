@@ -4,7 +4,7 @@ exports.handler = function(event, context, callback) {
 	const { identity, user: {
 		email,
 		app_metadata: { provider, roles },
-		user_metadata: { avatar_url, full_url },
+		user_metadata: { avatar_url, full_name },
 	}} = context.clientContext;
 
 	const all_the_things = JSON.stringify({
@@ -12,7 +12,7 @@ exports.handler = function(event, context, callback) {
 		provider,
 		roles,
 		avatar_url,
-		full_url,
+		full_name,
 	}, null, 2)
 
 	console.log(all_the_things)
