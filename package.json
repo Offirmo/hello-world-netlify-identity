@@ -1,9 +1,9 @@
 {
-	"name": "hello-world-netlify-functions",
+	"name": "hello-world-netlify-identity",
 	"version": "0.0.1",
-	"description": "Testing Netlify's functions",
+	"description": "Testing Netlify's identity",
 	"main": "index.js",
-	"repository": "https://github.com/Offirmo/hello-world-netlify-functions.git",
+	"repository": "https://github.com/Offirmo/hello-world-netlify-identity.git",
 	"author": "Offirmo <offirmo.net@gmail.com>",
 	"license": "Unlicense",
 	"private": true,
@@ -20,6 +20,7 @@
 		}
 	},
 	"dependencies": {
+		"netlify-identity-widget": "^1.4.14"
 	},
 	"devDependencies": {
 		"netlify-lambda": "^0.4.0"
