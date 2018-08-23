@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!-- html5_006 : WTE micro template -->
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Hello world netlify</title>
+
+	<link rel="stylesheet" type="text/css" href="https://rawgit.com/Offirmo/offirmo-monorepo/master/2-advanced/view-css/dist/offirmo-reset%2Butils.css" />
+
+	<style type="text/css">
+
+	</style>
+</head>
+
+<p>Hello world + Identity + Serverless, freely hosted by Netlify.</p>
+<ul>
+	<li>Src: <a>https://github.com/Offirmo/hello-world-netlify-identity</a>
+	<li>Using: <a>https://github.com/netlify/netlify-lambda</a>
+	<li>Direct function invocation:
+	<ul>
+		<li><a>/.netlify/functions/hello</a>
+		<li><a>/.netlify/functions/echo?foo=bar&baz=42</a>
+		<li><a>/.netlify/functions/error</a>
+	</ul>
+</ul>
+
+<script>
+	(document.querySelector('h1') || {}).textContent = document.title;
+	Array.prototype.forEach.call(document.querySelectorAll('a'), function (el) {
+		el.href || (el.href = el.text);
+	});
+
+	// TODO call /.netlify/functions/{function_name}
+</script>
