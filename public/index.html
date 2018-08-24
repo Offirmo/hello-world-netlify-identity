@@ -24,7 +24,7 @@
 <!-- Add a simpler button:
   Simple button that will open the modal.
 -->
-<div data-netlify-identity-button>Login with Netlify Identity</div>
+<div data-netlify-identity-button></div>
 
 
 <p>Hello world + Identity + Serverless, freely hosted by Netlify.</p>
@@ -36,7 +36,7 @@
 			<li><button onclick="netlifyIdentity.open()">auth</button>
 			<li><a>/.netlify/functions/me</a>
 			<li><a>/.netlify/functions/echo?foo=bar&baz=42</a>
-			<li><button onclick="whoami('.netlify/functions/echo?foo=bar&baz=42')">echo auth</button>
+			<li><button onclick="whoami('.netlify/functions/echo?foo=bar&baz=42')">echo with auth</button>
 			<li><button onclick="whoami()">whoami</button>
 		</ul>
 </ul>

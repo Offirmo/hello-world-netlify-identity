@@ -1,13 +1,18 @@
 // see https://www.netlify.com/docs/functions/
 
 exports.handler = function(event, context, callback) {
-	const { identity, user: {
+	if (!context.clientContext.user)
+		return callback(new Error('No/bad/outdated token!'))
+
+	const {
 		email,
+		sub,
 		app_metadata: { provider, roles },
 		user_metadata: { avatar_url, full_name },
-	}} = context.clientContext;
+	} = context.clientContext.user;
 
 	const all_the_things = JSON.stringify({
+		uuid: sub,
 		email,
 		provider,
 		roles,
