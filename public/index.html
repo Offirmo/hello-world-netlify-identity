@@ -67,10 +67,12 @@
 	// Log out the user
 	//netlifyIdentity.logout();
 
-	window.whoami = (url = '.netlify/functions/me') => {
+	window.whoami = async (url = '.netlify/functions/me') => {
 		const user = netlifyIdentity.currentUser()
 		if (!user)
 			throw new Error('Not logged in!')
+
+		await user.jwt() // refresh token, https://github.com/netlify/netlify-identity-widget/issues/108
 
 		let ok = false // so far
 		let errorMessage = 'Failed fetch'; // so far
